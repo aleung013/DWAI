@@ -13,28 +13,36 @@
 {% block body %}
 <br>
 
-
+<center>
 <h2>{{pic.title}}</h2>
 <div class="row">
-  <div class="col-sm-6 col-md-4">
+  <center>
+
     <div class="thumbnail">
       <a href="{{url_for('serve_image',image_id=img._id)}}"><img src="{{ url_for('serve_image', image_id=img.image._id) }}" alt="Generic placeholder thumbnail" width="400" height="300"></a>
       <div class="caption">
 	<h3>
 	  {{descripton}}
-      </div>
+      </center>
     </div>
   </div>
 </div>
 
-
+</center>
 {% for comment in commentlist %}
-comment
+{{comment}}
 <br>
 {% endif %}
-
-<form method="POST" class="form" role="form">
-  <div class="form-group">
+<div class="container">
+  <form method="POST" class="form-signin" role="form">
+    <h2 class="form-signin-heading">New Comment</h2>
+  <!--  <input type="text" class="form-control" id="comment" name="comment" placeholder="Type comment here">-->
+    <textarea cols="80" rows="5" name="comment" placeholder="Type comment here"></textarea>
+    <div class="form-controls">
+      <button type="submit" name="button" class="btn btn-lg btn-primary" value="Submit">Submit</button>
+      </div>
+  </form>
+</div>
    <!-- <label for="newcomment">-->
 
 {% endfor %}

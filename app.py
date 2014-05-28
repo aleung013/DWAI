@@ -205,11 +205,10 @@ def imagepg(user,title):
         if request.method == 'POST':
             comment = request.form['comment']
             if 'username' in session:
-                #adding comment
                 commentlist.add_comment(username, comment)
             else:
                 commentlist.add_comment('NONE', comment)
-         return render_template('imagepg.html',pic=pic, commentlist=commentlist )            
+        return render_template('imagepg.html',pic=pic, commentlist=commentlist )
     return redirect(url_for('homepage',e="Page does not exist"))
 
 @app.route('/_image/<image_id>')
