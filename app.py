@@ -149,9 +149,9 @@ def profile(name):
         x = u.find_one(username=name)
         try:
             propic = x.pic
-            return render_template('profile.html', user = user, owner = name,art=art, propic = propic)
+            return render_template('prof.html', user = user, owner = name,art=art, propic = propic)
         except:
-            return render_template('profile.html', user = user, owner = name,art=art)
+            return render_template('prof.html', user = user, owner = name,art=art)
     else:
         return redirect(url_for('homepage',e='User does not exist'))
 
