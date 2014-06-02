@@ -207,6 +207,8 @@ input::-moz-focus-inner {
 textarea {
   overflow: auto;
   vertical-align: top;
+  padding: 2px;
+  border-radius: 5px;
 }
 
 table {
