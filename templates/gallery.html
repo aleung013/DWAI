@@ -18,10 +18,11 @@
     {% if propic %}
     <img src="{{ url_for('serve_image',image_id=propic._id)}}" width="140" height="140" class="img-rounded">
     {% else %}
-    <img class="img-rounded" src="http://placehold.it/140x140">
+    <img class="img-rounded" src="../static/defaultpic.jpg" width="140" height="140">
     {% endif %}
     <br>
     <button type="button" class="btn btn-default" onClick="window.location.href='{{url_for('changeinfo')}}'">Edit Profile</button>
+    <button type="button" class="btn btn-default" onClick="window.location.href='{{url_for('changepic')}}'">Change Pic</buttton>
   </div>
 </div>
 <div class="container">
@@ -29,67 +30,40 @@
     <div class="col-lg-12">
       <h1 class="page-header">Gallery</h1>
     </div>
+    Images in Gallery: {{art|length}}<br>
+    Sort by:
+    <form method="POST">
+<!--    <div class="btn-group" data-toggle="buttons">-->
+      <label class="btn btn-primary btn-sm">
+	<input type="radio" name="sort" value="newest">Newest
+      </label>
+      <label class="btn btn-primary btn-sm">
+	<input type="radio" name="sort" value="oldest">Oldest
+      </label>
+ 
+    <button class="btn btn-primary btn-sm" input type="submit">Apply Changes</button>
+    </form>
+    <br>
+    {% for img in art %}
     <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-      <a class="thumbnail" href="#">
-	<img class="img-responsive" src="http://placehold.it/400x300">
+      <a class="thumbnail" href="{{url_for('imagepg', user=img.user, title=img.title)}}">
+	<img class="img-responsive" src="{{url_for('serve_image', image_id=img.image._id)}}">
       </a>
-      <h4><a href="#">Title 1</a></h4>
-      <p>Last edited on March 8, 2014 1:03PM</p>
+      <!--<img class="img-responsive" src="http://placehold.it/400x300">-->
+      <h4>
+	<a href="{{url_for('imagepg', user=img.user, title=img.title)}}">
+	  {% if img.title %}
+	  {{img.title}}
+	  {% else %}
+	  Untitled Drawing
+	  {% endif %}
+	</a>
+      </h4>
+      <p>Last edited on {{img.datetime}}</p>
     </div>
+    {% endfor %}
 
-
-    <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-      <a class="thumbnail" href="#">
-	<img class="img-responsive" src="http://placehold.it/400x300">
-      </a>
-      <h4><a href="#">Title 2</a></h4>
-      <p>Last edited on March 8, 2014 1:03PM</p>
-    </div>
-    <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-      <a class="thumbnail" href="#">
-	<img class="img-responsive" src="http://placehold.it/400x300">
-      </a>
-
-      <h4><a href="#">Title 3</a></h4>
-      <p>Last edited on March 8, 2014 1:03PM</p>
-    </div>
-    <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-      <a class="thumbnail" href="#">
-	<img class="img-responsive" src="http://placehold.it/400x300">
-      </a>
-      <h4><a href="#">Title 4</a></h4>
-      <p>Last edited on March 8, 2014 1:03PM</p>
-    </div>
-    <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-      <a class="thumbnail" href="#">
-	<img class="img-responsive" src="http://placehold.it/400x300">
-      </a>
-      <h4><a href="#">Title 5</a></h4>
-      <p>Last edited on March 8, 2014 1:03PM</p>
-    </div>
-    <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-      <a class="thumbnail" href="#">
-	<img class="img-responsive" src="http://placehold.it/400x300">
-      </a>
-      <h4><a href="#">Title 6</a></h4>
-      <p>Last edited on March 8, 2014 1:03PM</p>
-    </div>
-    <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-      <a class="thumbnail" href="#">
-	<img class="img-responsive" src="http://placehold.it/400x300">
-      </a>
-      <h4><a href="#">Title 7</a></h4>
-      <p>Last edited on March 8, 2014 1:03PM</p>
-    </div>
-    <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-      <a class="thumbnail" href="#">
-	<img class="img-responsive" src="http://placehold.it/400x300">
-      </a>
-      <h4><a href="#">Title 8</a></h4>
-      <p>Last edited on March 8, 2014 1:03PM</p>
-    </div>
-
-
+  
   </div>    
   <hr>
   <footer>
