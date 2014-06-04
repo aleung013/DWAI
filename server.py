@@ -14,7 +14,7 @@ if __name__ == "__main__":
     RECV_BUFFER = 4096
     s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
     s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR,1)
-    host = "149.89.150.121"
+    host = "localhost"
     port = 5000
     s.bind((host,port))
     s.listen(10)
@@ -23,8 +23,10 @@ if __name__ == "__main__":
     print "Chat server started on port",port
     
     while True:
+        print CONNECTION_LIST
         read_sockets,write_sockets,error_sockets = select.select(CONNECTION_LIST,[],[])
         for sock in read_sockets:
+            print sock, read_sockets
             if sock == s:
                 c, addr = s.accept()
                 CONNECTION_LIST.append(c)
@@ -33,14 +35,16 @@ if __name__ == "__main__":
             else:
                 try:
                     data = sock.recv(RECV_BUFFER)
-                    if data:
+                    if data != "quit":
                         broadcast_data(sock, "\r"+"<"+str(sock.getpeername())+"> "+data)
-                except:
-                    broadcast_data(sock,"Client (%s, %s) is offline" % addr)
-                    c.close()
-                    try:
+                    elif data == "quit":
+                        print addr, "has gone offline"
+                        broadcast_data(sock,"\nClient (%s, %s) is offline\n" % addr)
                         CONNECTION_LIST.remove(sock)
-                    except:
-                        pass
-                    continue
+                        c.close()
+                except:
+                    print "Lost connection from", addr
+                    broadcast_data(sock,"Client (%s, %s) is offline\n" % addr)
+                    CONNECTION_LIST.remove(sock)
+                    c.close()
     s.close()
