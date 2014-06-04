@@ -52,6 +52,13 @@ def homepage(e):
             
     return render_template('index.html', user=user, error=error) #pics=pics)
     
+@app.route('/about')
+def about():
+    if 'username' in session:
+        user = session['username']
+    else:
+        user = None
+    return render_template('about.html', user = user)
 
 @app.route('/register',methods=['GET','POST'])
 def register():
@@ -131,9 +138,9 @@ def me():
         x = u.find_one(username=session['username'])
         try:
             propic = x.pic
-            return render_template('profile.html', user = session['username'], owner = session['username'],art=art, propic = propic)
+            return render_template('gallery.html', user = session['username'], owner = session['username'],art=art, propic = propic)
         except:
-            return render_template('profile.html', user = session['username'], owner = session['username'],art=art)
+            return render_template('gallery.html', user = session['username'], owner = session['username'],art=art)
     else:
         return redirect(url_for('login',e='Please log in to access the page'))
 
