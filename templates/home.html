@@ -1,176 +1,229 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="shortcut icon" href="../../docs-assets/ico/favicon.png">
+{% extends "layout.html" %}
 
-    <title>Google Paint</title>
+<!-- Bootstrap core CSS -->
+<link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Bootstrap core CSS -->
-    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Custom styles for this template -->
+<link href="offcanvas.css" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
-    <link href="offcanvas.css" rel="stylesheet">
+{% block head %}
+<!-- Custom styles for this template -->
+<link href="http://getbootstrap.com/examples/offcanvas/offcanvas.css" rel="stylesheet">
+<!-- Documentation extras -->
+<link href="http://getbootstrap.com/docs-assets/css/docs.css" rel="stylesheet">
+<link href="http://getbootstrap.com/docs-assets/css/pygments-manni.css" rel="stylesheet">
+<!-- Bootstrap core CSS -->
+<link href="../static/css/bootstrap.min.css" rel="stylesheet">
+{% endblock %}
 
-    {% block head %}
-    <!-- Custom styles for this template -->
-    <link href="http://getbootstrap.com/examples/offcanvas/offcanvas.css" rel="stylesheet">
-    <!-- Documentation extras -->
-    <link href="http://getbootstrap.com/docs-assets/css/docs.css" rel="stylesheet">
-    <link href="http://getbootstrap.com/docs-assets/css/pygments-manni.css" rel="stylesheet">
-    <!-- Bootstrap core CSS -->
-    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
-    {% endblock %}
+</head>
 
-  </head>
+{% block body %}
+<body>
+  <!--
+      <div class="navbar-collapse collapse">
+        <form class="navbar-form navbar-right" role="form">
+          <div class="form-group">
+            <input type="text" placeholder="Email" class="form-control">
+          </div>
+          <div class="form-group">
+            <input type="password" placeholder="Password" class="form-control">
+          </div>
+          <button type="submit" class="btn btn-success">Sign in</button>
+        </form>
+	-->
   
-  <body>
-    <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Google Paint</a>
+  <div class="container">
+    
+    <div class="row row-offcanvas row-offcanvas-right">
+      
+      <div class="col-xs-12 col-sm-9">
+        <p class="pull-right visible-xs">
+          <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
+        </p>
+        <div class="jumbotron">
+          <h1>Hello, world!</h1>
+          <p>Google Paint is a site where multiple people can work on a single work of art at the same time.</p>
         </div>
-       <div class="navbar-collapse collapse">
-          <form class="navbar-form navbar-right" role="form">
-            <div class="form-group">
-              <input type="text" placeholder="Email" class="form-control">
-            </div>
-            <div class="form-group">
-              <input type="password" placeholder="Password" class="form-control">
-            </div>
-            <button type="submit" class="btn btn-success">Sign in</button>
-          </form>
-<!-- /
-	  <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-	  </ul>
-	  <ul class="nav navbar-nav">
--->	    
-       </div><!-- /.nav-collapse -->
-      </div><!-- /.container -->
-    </div><!-- /.navbar -->
-
-    <div class="container">
-
-      <div class="row row-offcanvas row-offcanvas-right">
-
-        <div class="col-xs-12 col-sm-9">
-          <p class="pull-right visible-xs">
-            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
-          </p>
-          <div class="jumbotron">
-            <h1>Hello, world!</h1>
-            <p>Google Paint is a site where multiple people can work on a single work of art at the same time.</p>
-          </div>
-          <div class="row">
-
-	    <!--DISPLAY RANDOM 6 IMAGES // TOP 6 IMAGES OF THE DAY // 6 MOST RECENTLY WORKED ON-->
-
-
-            <div class="col-6 col-sm-6 col-lg-4 thumb">
-              <h2><a href="{{url_for('imagepg', user=img.user, title=img.title)}}">
-		  <!--{% if img.title %}
-		  {{img.title}}
-		  {% else %}
-		  Untitled Drawing
-		  {% endif %}-->
-		  {{img.title}}
-		</a></h2>
-	      <a class="thumbnail" href="{{url_for('imagepg', user=img.user, title=img.title)}}">
-		<img class="img-responsive" src="{{url_for('serve_image', image_id=img.image._id)}}">
-	      </a>
-	      <!--<img class="img-responsive" src="http://placehold.it/400x300">-->
-	      <p>Last edited on {{img.datetime}}</p>
-              <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-            </div><!--/span-->
-
-
-
-	    <div class="col-6 col-sm-6 col-lg-4">
-              <h2>Heading</h2>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-              <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-            </div><!--/span-->
-	    <div class="col-6 col-sm-6 col-lg-4">
-              <h2>Heading</h2>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-              <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-            </div><!--/span-->
-            <div class="col-6 col-sm-6 col-lg-4">
-              <h2>Heading</h2>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-              <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-            </div><!--/span-->
-            <div class="col-6 col-sm-6 col-lg-4">
-              <h2>Heading</h2>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-              <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-            </div><!--/span-->
-            <div class="col-6 col-sm-6 col-lg-4">
-              <h2>Heading</h2>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-              <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-            </div><!--/span-->
-
-	    <center>
-	      <ul class="pagination">
-		<li class="disabled"><a href="#">&laquo;</a></li>
-		<li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-		<li><a href="#">2</a></li>
-		<li><a href="#">3</a></li>
-		<li><a href="#">4</a></li>
-		<li><a href="#">5</a></li>
-		<li><a href="#">6</a></li>
-		<li><a href="#">&raquo;</a></li>
-	      </ul>
-	    </center>
-          </div><!--/row-->
-
-
-        </div><!--/span-->
-
-
 	
+	<div class="row">
+          <div class="col-3 col-lg-6">
+            <h2>A quick and easy online tool!</h2>
+	    <p>Users have access to our canvas, which includes basic functionality such as drawing, colors, pen sizes, undos and redos. All finished works can be saved in their personal galleries, to be accessed at a click of their mouse.</p>
+          </div><!--/span-->
+          <div class="col-6 col-sm-6 col-lg-6">
+            <h2>Instantaneous Collaboration</h2>
+            <p>Users can draw with their friends by simultaneously working on the same canvas. </p>
+            
+	  </div>
+	</div><!--row-->
+	<br>
+	<br>
+
+	  <!--DISPLAY RANDOM 6 IMAGES // TOP 6 IMAGES OF THE DAY // 6 MOST RECENTLY WORKED ON-->
+
+	<div class="row">
+          <div class="col-6 col-sm-6 col-lg-4 thumb">
+            <h2><a href="{{url_for('imagepg', user=img.user, title=img.title)}}">
+		<!--{% if img.title %}
+		    {{img.title}}
+		    {% else %}
+		    Untitled Drawing
+		    {% endif %}-->
+		{{img.title}}
+	    </a></h2>
+	    <a class="thumbnail" href="{{url_for('imagepg', user=img.user, title=img.title)}}">
+	      <img class="img-responsive" src="{{url_for('serve_image', image_id=img.image._id)}}">
+	    </a>
+	    <!--<img class="img-responsive" src="http://placehold.it/400x300">-->
+	    <p>Last edited on {{img.datetime}}</p>
+            <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+          </div><!--/span-->
+
+	  
+	  <div class="col-6 col-sm-6 col-lg-4">
+            <h2>Heading</h2>
+            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+            <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+          </div><!--/span-->
+	  <div class="col-6 col-sm-6 col-lg-4">
+            <h2>Heading</h2>
+            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+            <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+          </div><!--/span-->
+          <div class="col-6 col-sm-6 col-lg-4">
+            <h2>Heading</h2>
+            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+            <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+          </div><!--/span-->
+          <div class="col-6 col-sm-6 col-lg-4">
+            <h2>Heading</h2>
+            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+            <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+          </div><!--/span-->
+          <div class="col-6 col-sm-6 col-lg-4">
+            <h2>Heading</h2>
+            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+            <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+          </div><!--/span-->
+
+	  <center>
+	    <ul class="pagination">
+	      <li class="disabled"><a href="#">&laquo;</a></li>
+	      <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+	      <li><a href="#">2</a></li>
+	      <li><a href="#">3</a></li>
+	      <li><a href="#">4</a></li>
+	      <li><a href="#">5</a></li>
+	      <li><a href="#">6</a></li>
+	      <li><a href="#">&raquo;</a></li>
+	    </ul>
+	  </center>
+        </div><!--/row-->
+
+      </div><!--/span-->
 
 
-        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
-          <div class="list-group">
-            <a href="#" class="list-group-item active">Today's Top 6</a>
-            <a href="#" class="list-group-item">Today's Most Viewed</a>
-	    <a href="#" class="list-group-item">Random</a>            
-	    <a href="#" class="list-group-item">Recently Edited</a> 
-            <a href="#" class="list-group-item">Your Collaborations</a>
-            <a href="#" class="list-group-item">Recently Viewed</a>
-            <a href="#" class="list-group-item">Top Images of All Time</a>           
-          </div>
-        </div><!--/span-->
-      </div><!--/row-->
+      
+      <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+	
+        <div class="jumbotron">
+          {{message}}
+          <h1>Start Now!</h1>
+          <!--<p>Go straight to a blank canvas!</p>-->
 
-      <hr>
+          <!-- Button trigger modal -->
+          <a class="btn btn-primary btn-lg" role="button" data-toggle="modal" data-target="#myModal">Blank canvas &raquo;</a>
 
-      <footer>
-        <p>&copy; Software Development 2013-2014</p>
-      </footer>
+	  <!-- Modal -->
+	  <div class="modal fade modal-sm" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	    <div class="modal-dialog">
+	      <div class="modal-content">
+		<form id="widxheight" method="POST" role="form">
+		  <div class="modal-header">
+		    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		    <h4 class="modal-title" id="myModalLabel">Canvas</h4>
+		  </div>
+		  <div class="modal-body row">
+		    <h3>Canvas size:</h3>
+		    <div class="col-xs-3">
+ 		      <input name="cwidth" type="number" size="8" class="form-control" value="1000" min="100" max="1000"> 
+		    </div>
+		    <br> x <br>
+		    <div class="col-xs-3">
+		      <input name="cheight" type="number" size="8" class="form-control" value="500" min="100" max="750">
+		    </div>
+		  </div>
+		  <div class="modal-footer">
+		    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		    <button type="submit" id="create" class="btn btn-primary">Create</button>
+		  </div>
+		</form>
+	      </div><!-- /.modal-content -->
+	    </div><!-- /.modal-dialog -->
+	  </div><!-- /.modal -->
+	</div>	
 
-    </div><!--/.container-->
+	<div class="list-group">
+	  <a href="#" class="list-group-item active">Today's Top 6</a>
+	  <a href="#" class="list-group-item">Today's Most Viewed</a>
+	  <a href="#" class="list-group-item">Random</a>            
+	  <a href="#" class="list-group-item">Top Images of All Time</a>   
+	</div>
 
+	{% if user %}
+	<div>
+	  <a href="#" class="list-group-item">Recently Edited</a> 
+	  <a href="#" class="list-group-item">Your Collaborations</a>
+	  <a href="#" class="list-group-item">Recently Viewed</a>    
+	  {% endif %}    
+	</div>
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="../../dist/js/bootstrap.min.js"></script>
-    <script src="offcanvas.js"></script>
-  </body>
-</html>
+	<div class="list-group">	
+	  <a href="/profile/alvin" class="list-group-item ">Alvin's Profile</a>
+	  <a href="/profile/vivian" class="list-group-item">Vivian's Profile</a>
+	  <a href="/profile/michele" class="list-group-item">Michele's Profile</a>
+	  <a href="/profile/judy" class="list-group-item">Judy's Profile</a>
+	</div>	
+      </div><!--/span-->	
+    </div><!--/row-->	
+
+    <br>
+    <br>
+    <br>
+    <hr>
+
+    <footer>
+      <p>&copy; Software Development 2013-2014</p>
+    </footer>
+
+  </div><!--/.container-->
+
+</body>
+
+{% endblock %}
+
+<!-- Bootstrap core JavaScript-->
+<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="../static/js/bootstrap.min.js"></script>
+<script src="../static/jquery/src/jquery.js"</script>
+<!--	<script src="http://getbootstrap.com/examples/offcanvas/offcanvas.js"></script>-->
+	
+<!-- Bootstrap core CSS -->
+<link href="../static/css/bootstrap.min.css" rel="stylesheet">
+
+<!--
+    <script type="text/javascript">
+      
+      function moveToCanvas()
+      {
+      var width = width.value;
+      var height = height.value;
+      window.location.href='/canvas';
+      }
+      
+      var createcanvas = document.getElementById("create");
+      createcanvas.addEventListener("click", moveToCanvas);
+      
+    </script>
+    -->
