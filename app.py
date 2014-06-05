@@ -46,11 +46,11 @@ def homepage(e):
         #pics = art[:3]
         
     if not 'username' in session:
-            return render_template('index.html', user=None, error=error) #pics=pics)
+            return render_template('home.html', user=None, error=error) #pics=pics)
     else:
             user = session['username']
             
-    return render_template('index.html', user=user, error=error) #pics=pics)
+    return render_template('home.html', user=user, error=error) #pics=pics)
     
 
 @app.route('/register',methods=['GET','POST'])
