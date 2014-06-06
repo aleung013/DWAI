@@ -23,10 +23,8 @@ if __name__ == "__main__":
     print "Chat server started on port",port
     
     while True:
-        print CONNECTION_LIST
         read_sockets,write_sockets,error_sockets = select.select(CONNECTION_LIST,[],[])
         for sock in read_sockets:
-            print sock, read_sockets
             if sock == s:
                 c, addr = s.accept()
                 CONNECTION_LIST.append(c)
@@ -41,7 +39,7 @@ if __name__ == "__main__":
                         print addr, "has gone offline"
                         broadcast_data(sock,"\nClient (%s, %s) is offline\n" % addr)
                         CONNECTION_LIST.remove(sock)
-                        c.close()
+                        #c.close()
                 except:
                     print "Lost connection from", addr
                     broadcast_data(sock,"Client (%s, %s) is offline\n" % addr)

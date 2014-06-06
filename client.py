@@ -40,7 +40,7 @@ if __name__ == "__main__":
                     msg = sys.stdin.readline()
                     s.send(msg)
                     prompt()
-        except KeyboardInterrupt:
+        except:
             s.send("quit")
             s.close()
             sys.exit()
