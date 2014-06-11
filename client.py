@@ -16,6 +16,7 @@ if __name__ == "__main__":
 
     try:
         s.connect((host,port))
+        #s.send("\n"+username+" has connected\n")
     except:
         print 'Unable to connect'
         sys.exit()
@@ -41,6 +42,6 @@ if __name__ == "__main__":
                     s.send(msg)
                     prompt()
         except:
-            s.send("quit")
+            s.send("quit")#+username
             s.close()
             sys.exit()

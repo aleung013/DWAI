@@ -175,6 +175,43 @@ def canvas(w=1000, h=500):
     else:
         return redirect(url_for('login',e='Please log in to access page'))
 
+#to be integrated with canvas page
+#server.py needs to be running
+@app.route('/chat',methods=['GET','POST']
+def chat():
+    if 'username' in session:
+        host = "149.89.150.124"
+        port = 5000
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        s.settimeout(2)
+        messages = ""
+
+        try:
+           s.connect((host,port))
+           s.send(session['username']+" has connected\n")
+        except:
+           print 'Unable to connect'
+
+        messages += 'Welcome to the chat!\n'
+
+        while True:
+           try:
+              socket_list = [s]
+              read_sockets,write_sockets,error_sockets = select.select(socket_list,[],[])
+              for sock in read_sockets:
+                 if sock == s:
+                    data = sock.recv(4096)
+                    if not data:
+                        messages += 'Disconnected from chat server\nPlease refresh the page.'
+                    else:
+                        messages += data
+                 elif request.method == 'POST':
+                    msg = session['username']+request.form['chat'].strip()+"\n"
+                    messages += msg
+                    s.send(msg)
+           except:
+              s.send("quit"+session['username'])
+              s.close()
 
 @app.route('/changepic', methods=['GET','POST'])
 def changepic():

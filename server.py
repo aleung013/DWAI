@@ -9,12 +9,15 @@ def broadcast_data(sock,message):
                 socket.close()
                 CONNECTION_LIST.remove(socket)
 
+#run the server on host
+#ssh if needed
+#make sure client has same host
 if __name__ == "__main__":
     CONNECTION_LIST = []
     RECV_BUFFER = 4096
     s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
     s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR,1)
-    host = "localhost"
+    host = "149.89.150.124"
     port = 5000
     s.bind((host,port))
     s.listen(10)
@@ -33,16 +36,16 @@ if __name__ == "__main__":
             else:
                 try:
                     data = sock.recv(RECV_BUFFER)
-                    if data != "quit":
+                    if data[:5] != "quit":
                         broadcast_data(sock, "\r"+"<"+str(sock.getpeername())+"> "+data)
-                    elif data == "quit":
+                    elif data[:5] == "quit":
                         print addr, "has gone offline"
-                        broadcast_data(sock,"\nClient (%s, %s) is offline\n" % addr)
+                        broadcast_data(sock,"\n"+data[5:]+" is offline\n" % addr)
                         CONNECTION_LIST.remove(sock)
                         #c.close()
                 except:
                     print "Lost connection from", addr
-                    broadcast_data(sock,"Client (%s, %s) is offline\n" % addr)
+                    broadcast_data(sock,"\nClient (%s, %s) is offline\n" % addr)
                     CONNECTION_LIST.remove(sock)
                     c.close()
     s.close()
