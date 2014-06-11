@@ -25,10 +25,10 @@
     <div class="navbar-collapse collapse">
           <div class="nav navbar-nav">
 	    <form method="POST" class="navbar-form">
-	      <button type="button" class="btn btn-default" id="undo">
+	      <button type="button" class="btn btn-default" id="undo" onClick="draw.undo()">
 		<span class="glyphicon glyphicon-arrow-left"></span> Undo
 	      </button>
-	      <button type="button" class="btn btn-default" id="redo">
+	      <button type="button" class="btn btn-default" id="redo" onClick="draw.redo()">
 		<span class="glyphicon glyphicon-arrow-right"></span> Redo
 	      </button>
               <!--
@@ -47,24 +47,58 @@
 	      
 	      <label type="text"id="color">Color: </label>
 	      <input type="color" id="pencolor" name="pencolor">
-
+	      <br>
 	      <label type="text" id="penslide">Pen size: </label>
 	      <input id="pensizer" type="range" name="pensize" min="1" max="100" value="25">
+	      <label type="text" id="opacityslide">Pen Opacity: </label>
+	      <input id="opacitizer" type="range" name="opacity" min="1" max="100" value="25">
 	      
 
 	    </form>
 	  </div> <!-- navbar -->
 
+	  <div class="nav navbar-nav">
+	    <form method="POST" role="form" class="navbar-form">
+
+	     
+	      <label type="text" id="currentLay">Layer: </label>
+
+	      <br>
+
+	      <button type="button" class="btn btn-default" id="incLayer" onClick="draw.incLayer()">
+		<span class="glyphicon glyphicon-arrow-up"></span>
+	      </button>
+	      <button type="button" class="btn btn-default" id="decLayer" onClick="draw.decLayer()">
+		<span class="glyphicon glyphicon-arrow-down"></span>
+	      </button>
+	      <button type="button" class="btn btn-default" id="newLayer" onClick="draw.newLayer()">
+		<span class="glyphicon glyphicon-plus"></span>
+	      </button>
+
+	      <br>
+
+	      <button type="button" class="btn btn-default" id="showLayer" onClick="draw.showLayer()">
+		<span class="glyphicon glyphicon-eye-open"></span>
+	      </button>
+	      <button type="button" class="btn btn-default" id="hideLayer" onClick="draw.hideLayer()">
+		<span class="glyphicon glyphicon-eye-close"></span>
+	      </button>
+
+
+	    </form>
+	  </div>
+	  
+
 	  <div class="nav navbar-nav navbar-right"> 
 	    <form method="POST" role="form" class="navbar-form">
-            
+          
 	      <button type="button" class="btn btn-success" id="save">
 	      <span class="glyphicon glyphicon-save"></span> Save
 	    </button>
 	    <button type="button" class="btn btn-danger" id="delete" onClick="deleteCanvas()">
 	      <span class="glyphicon glyphicon-trash"></span> Delete
 	    </button>
-	    
+	  
 	    </form>
 
 	  </div>

@@ -94,8 +94,10 @@ var draw = function(){
     var newLayer = function(){
 	layerList.push(true);
 	currLay++;
+	$('#currentLay').html('Layer: ' + (currLay + 1));
     }
     var currLayer = function(){
+	$('#currentLay').html('Layer: ' + (currLay + 1));
 	return currLay;
     }
     var hideLayer = function(){
@@ -113,6 +115,21 @@ var draw = function(){
     var changeLayer = function(newLayer){
 	currLay = newLayer - 1;
     }
+
+    var incLayer = function(){
+	if(currLayer() < layerList.length - 1)
+	   currLay++;
+	$('#currentLay').html('Layer: ' + (currLay + 1));
+	return currLay;
+    }
+
+    var decLayer = function(){
+	if(currLayer() >= 1)
+	    currLay--;
+	$('#currentLay').html('Layer: ' + (currLay + 1));
+	return currLay;
+    }
+
     var pencolor = function(){
 	return $('#pencolor').prop('value');
     }
@@ -122,6 +139,7 @@ var draw = function(){
 	$('#penslide').html('Pensize: ' + penwidth);
 	return penwidth;
     }
+
 
     return {
 	undo: undo,
@@ -134,7 +152,9 @@ var draw = function(){
 	showLayer: showLayer,
 	changeLayer: changeLayer,
 	pencolor: pencolor,
-	pensize: pensize
+	pensize: pensize,
+	incLayer: incLayer,
+	decLayer: decLayer
     };
 }();
 draw.load();
