@@ -22,51 +22,51 @@
         <span class="icon-bar"></span>
       </button>
     </div>
+
     <div class="navbar-collapse collapse">
-          <div class="nav navbar-nav">
-	    <form method="POST" class="navbar-form">
-	      <button type="button" class="btn btn-default" id="undo">
-		<span class="glyphicon glyphicon-arrow-left"></span> Undo
-	      </button>
-	      <button type="button" class="btn btn-default" id="redo">
-		<span class="glyphicon glyphicon-arrow-right"></span> Redo
-	      </button>
-              <!--
-	      <div class="dropdown">
-		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Tools <b class="caret"></b></a>
-		<ul class="dropdown-menu">
-                  <li><a href="#">Canvas Size</a></li>
-                  <li><a href="#">Pen Size</a></li>
-                  <li><a href="#">Pen Color</a></li>
-                  <li class="divider"></li>
-                  <li class="dropdown-header">Brush Tools</li>
-                  <li><a href="#">Pick color</a></li>
-		</ul>
-              </div>
-	      -->
+          <!--<div class="nav navbar-nav">-->
+	  <ul class="nav nav-pills">
+	    <li class="navbar-form">
+	      <form method="POST" class="navbar-form">
+		<button type="button" class="btn btn-default" id="undo">
+		  <span class="glyphicon glyphicon-arrow-left"></span> Undo
+		</button>
+		<button type="button" class="btn btn-default" id="redo">
+		  <span class="glyphicon glyphicon-arrow-right"></span> Redo
+		</button>
+	      </form>
+	    </li>
+	    <!--</div>-->
+	    
+	    <li class="dropdown">
+	      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tools <b class="caret"></b></a>
+	    <ul class="dropdown-menu">
+              <li><a href="#" onClick="changeSize()">Canvas Size</a></li>
+	      <li><a href="#">New Layer</a></li>
+              <li class="divider"></li>
+              <li class="dropdown-header">Brush Tools</li>
+              <li><a href="#">Pick color</a></li>
+	    </ul>
+	  </li>
 	      
+	    <li class="active">
 	      <label type="text"id="color">Color: </label>
 	      <input type="color" id="pencolor" name="pencolor">
 
 	      <label type="text" id="penslide">Pen size: </label>
 	      <input id="pensizer" type="range" name="pensize" min="1" max="100" value="25">
-	      
-
-	    </form>
-	  </div> <!-- navbar -->
+	    </li>
+	  </ul> <!-- navbar -->
 
 	  <div class="nav navbar-nav navbar-right"> 
 	    <form method="POST" role="form" class="navbar-form">
-            
-	      <button type="button" class="btn btn-success" id="save">
+	      <button type="button" class="btn btn-success" id="save" onClick="saveCanvas()">
 	      <span class="glyphicon glyphicon-save"></span> Save
-	    </button>
-	    <button type="button" class="btn btn-danger" id="delete" onClick="deleteCanvas()">
-	      <span class="glyphicon glyphicon-trash"></span> Delete
-	    </button>
-	    
+	      </button>
+	      <button type="button" class="btn btn-danger" id="delete" onClick="deleteCanvas()">
+		<span class="glyphicon glyphicon-trash"></span> Delete
+	      </button>
 	    </form>
-
 	  </div>
 
         </div><!--/.nav-collapse -->
@@ -92,7 +92,25 @@
       <script src="../static/js/bootstrap.min.js"></script>
       <script src="../static/js/svg.js"></script>
 
-      <!--<p id="demo"></p>-->
+      <script>
+	function changeSize()
+	{
+	var x;
+	var size=prompt("Change size ex. 1000x1000","1000x1000");
+	}
+      </script>
+
+      <script>
+	function saveCanvas()
+	{
+	var x;
+	var title=prompt("Title your work","Untitled");
+	if (title!=null)
+	{ x="Your work has been saved as " + title + "." }
+	}
+      </script>
+
+      <!--<p id="demo"></p>-->	
       <script>
 	function deleteCanvas()
 	{
