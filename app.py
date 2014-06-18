@@ -230,11 +230,10 @@ def changepic():
 
 @app.route('/about')
 def about():
-    return render_template('about.html')
-
-@app.route('/gallery')
-def gallery():
-    return render_template('gallery.html')
+    if 'username' not in session:
+        return render_template('about.html')
+    else:
+        return render_template('about.html',user=session['username'])
 
 @app.route('/upload',methods=['GET','POST'])
 def upload():
