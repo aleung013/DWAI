@@ -24,59 +24,77 @@
     </div>
 
     <div class="navbar-collapse collapse">
-          <!--<div class="nav navbar-nav">-->
-	  <ul class="nav nav-pills">
-	    <li class="navbar-form">
-	      <form method="POST" class="navbar-form">
-		<button type="button" class="btn btn-default" id="undo">
-		  <span class="glyphicon glyphicon-arrow-left"></span> Undo
-		</button>
-		<button type="button" class="btn btn-default" id="redo">
-		  <span class="glyphicon glyphicon-arrow-right"></span> Redo
-		</button>
-	      </form>
-	    </li>
-	    <!--</div>-->
+      <!--<div class="nav navbar-nav">-->
+      <ul class="nav nav-pills">
+	
+	<li class="navbar-form">
+	  <form method="POST" class="navbar-form">
+	    <button type="button" class="btn btn-default" id="undo">
+	      <span class="glyphicon glyphicon-arrow-left"></span> Undo
+	    </button>
+	    <button type="button" class="btn btn-default" id="redo">
+	      <span class="glyphicon glyphicon-arrow-right"></span> Redo
+	    </button>
+	  </form>
+	</li>
+	<!--</div>-->
 	    
-	    <li class="dropdown">
-	      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tools <b class="caret"></b></a>
-	    <ul class="dropdown-menu">
-              <li><a href="#" onClick="changeSize()">Canvas Size</a></li>
-	      <li><a href="#">New Layer</a></li>
-              <li class="divider"></li>
-              <li class="dropdown-header">Brush Tools</li>
-              <li><a href="#">Pick color</a></li>
-	    </ul>
-	  </li>
-	      
-	    <li class="active">
-	      <label type="text"id="color">Color: </label>
-	      <input type="color" id="pencolor" name="pencolor">
+	<li class="dropdown navbar-form">
+	  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tools <b class="caret"></b></a>
+	  <ul class="dropdown-menu">
+            <li><a href="#" onClick="changeSize()">Canvas Size</a></li>
+	    <li><a href="#">New Layer</a></li>
+	    <li><a href="#">Delete Layer</a></li>
+            <li class="divider"></li>
+            <li class="dropdown-header">Brush Tools</li>
+            <li><a href="#">Pick Color</a></li>
+	    <!--if Pick Color-- color = the color pixel of the next mouse-click-->
+	  </ul>
+	</li>
 
-	      <label type="text" id="penslide">Pen size: </label>
-	      <input id="pensizer" type="range" name="pensize" min="1" max="100" value="25">
-	    </li>
-	  </ul> <!-- navbar -->
+	<li><br></li>
 
-	  <div class="nav navbar-nav navbar-right"> 
-	    <form method="POST" role="form" class="navbar-form">
-	      <button type="button" class="btn btn-success" id="save" onClick="saveCanvas()">
+	<li class="active navbar-form">
+	  <label type="text" id="color">Color: </label>
+	  <input id="penchoice" type="color" id="pencolor" name="pencolor">
+	</li>
+	
+	<li><br></li>
+
+	<li class="active navbar-form">
+	  <label type="text" id="penslide">Pen size: </label>
+	  <input id="pensizer" type="range" name="pensize" min="1" max="100" value="25">
+	</li>
+
+	<li><br></li>
+	
+	<li class="active navbar-form">
+	  <label type="text" id="zoomslide">Zoom: </label>
+	  <input id="zoomsizer" type="range" name="zoomsize" min="10%" max="200%" value="100%">
+	</li>
+
+	<!--<li class="nav navbar-nav navbar-right">--> 
+	<li class="navbar-form navbar-right">
+	  <form method="POST" role="form" class="navbar-form">
+	    <button type="button" class="btn btn-success" id="save" onClick="saveCanvas()">
 	      <span class="glyphicon glyphicon-save"></span> Save
-	      </button>
-	      <button type="button" class="btn btn-danger" id="delete" onClick="deleteCanvas()">
-		<span class="glyphicon glyphicon-trash"></span> Delete
-	      </button>
-	    </form>
-	  </div>
+	    </button>
+	    <button type="button" class="btn btn-danger" id="delete" onClick="deleteCanvas()">
+	      <span class="glyphicon glyphicon-trash"></span> Delete
+	    </button>
+	  </form>
+	</li>
 
-        </div><!--/.nav-collapse -->
-      </div>
+      </ul><!--/.nav-collapse -->
+    </div>
 
+  </div>
+</div>
 
-      <center>
-	<svg id="svg" width="2000" height="1000" style="border:1px solid #d3d3d3;">
-  Your browser does not support the HTML5 canvas tag.</svg>
-      </center>
+    <center>
+      <svg id="svg" width="1000" height="1000" style="border:1px solid #d3d3d3;">
+	Your browser does not support the HTML5 canvas tag.</svg>
+    </center>
 
 
 
@@ -96,7 +114,7 @@
 	function changeSize()
 	{
 	var x;
-	var size=prompt("Change size ex. 1000x1000","1000x1000");
+	var size=prompt("Change size (ex. 1000x1000)","1000x1000");
 	}
       </script>
 
@@ -127,9 +145,14 @@
 	var x = document.getElementById("penslide");
 	var y = document.getElementById("pensizer");
 	x.innerHTML = "Pensize: " + y.value;
+
+	var z = document.getElementById("zoomslide");
+	var a = document.getElementById("zoomsizer");
+	z.innerHTML = "Zoom: " + a.value + "%";
 	}
 
-	window.onload = function() { printValue(); }	
+	window.onload = function() { printValue(); }
+
       </script>
       
 {% endblock %}
