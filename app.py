@@ -216,6 +216,13 @@ def chat():
               s.send("quit"+session['username'])
               s.close()
 
+@app.route('/chatpg')
+def chatpg():
+    if 'username' not in session:
+        return render_template('chat.html', chatname="Guest")
+    else:
+        return render_template('chat.html', chatname=session['username'])
+
 @app.route('/changepic', methods=['GET','POST'])
 def changepic():
     if 'username' not in session:
