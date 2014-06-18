@@ -177,7 +177,10 @@ def canvas(w=1000, h=500):
 
 #to be integrated with canvas page
 #server.py needs to be running
-@app.route('/chat',methods=['GET','POST']
+#does not work yet
+#this may not work with webservers
+#attempted another method with gevent and socketio, but have yet to succeed
+@app.route('/chat',methods=['GET','POST'])
 def chat():
     if 'username' in session:
         host = "149.89.150.124"
