@@ -24,7 +24,7 @@ For future prospects, we plan on implementing chat and view/edit settings as wel
 4. see how we can get multiple users adding in a stroke (check out the server stuff and how we will only be doing the undo/redo stuff to the user who made them, not to the entire canvas and not undoing/redoing other people's stuff.
 5. think about new animations and site navigation that will make the site more interactive and interesting
 
-###Bugs I'm noticing & Things we need to fix/add & Most current updates
+###Things we need to fix/add & Most current updates
 - Individual image page isn't working/doesn't exist. Remember to add an edit/update button as well as a place for an option description. Comments maybe. Also favorites? Stars? Upvotes?
 - Chat is still in the making (username stuff...etc), would be cool if it worked
 - Home page isn't working?? Google Paint logo should suffice, don't need 'home' on the navbar, that's redundant.
@@ -36,7 +36,7 @@ For future prospects, we plan on implementing chat and view/edit settings as wel
    1. Canvas: dropdown for tools isn't working, as are the other dropdowns on the page. undo/redo don't work. Need to make the title after saving actually work. (need to get saving to work period.) Also zoom is just there for show right now.
    2. Home: just giving an outright error msg right now saying 'img' is undefined
 
-- Quick fixes:
+###Quick fixes:
    1. Clicking on the user's name should automatically bring to profile (just make it an a href)
    2. Add an "add artwork" button on the profile/gallery pg.
    3. Add more things to profile: "About me", etc. 
